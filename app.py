@@ -23,9 +23,11 @@ from sklearn.naive_bayes import MultinomialNB
 import logging
 from jinja2.exceptions import TemplateNotFound
 
-
 # Check and download NLTK resources
+
+
 def ensure_nltk_resources():
+
     try:
         # Check for punkt_tab (used in NLTK 3.7+)
         punkt_tab_path = os.path.join(
@@ -712,5 +714,14 @@ if __name__ == "__main__":
     print("Starting Flask app...")
     init_db()
     print("Database initialized")
-    print("Running Flask server on http://127.0.0.1:5000")
-    app.run(debug=True, use_reloader=False)
+
+    port = int(os.environ.get("PORT", 5000))
+
+    print(f"Running Flask server on port {port}")
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=True,
+        use_reloader=False
+    )
