@@ -1,29 +1,35 @@
 # Akshara AI Symptom Checker
 
-Akshara AI Symptom Checker is a Flask-based web application that helps users analyze symptoms using Natural Language Processing (NLP) and AI-powered logic.
+Akshara AI Symptom Checker is an AI-powered healthcare web application built using Flask, NLP, and Speech Recognition.
 
 The application allows users to:
 - Create accounts
 - Log in securely
 - Enter symptoms manually or through voice input
-- Receive medical suggestions
-- Track previous symptom history
+- Receive AI-based medical suggestions
+- Track symptom history
 
-This project was built as a beginner-to-intermediate level AI healthcare web application using Python and Flask.
+This project was developed as a beginner-to-intermediate level AI healthcare application using Python and Flask.
 
 ---
 
-# Live Features
+# Live Demo
 
-✅ User Authentication  
-✅ Login & Signup System  
-✅ Symptom Analysis  
+https://akshara-ai-symptom-checker.onrender.com
+
+---
+
+# Features
+
+✅ User Authentication System  
+✅ Login & Signup Pages  
+✅ AI-Based Symptom Analysis  
 ✅ Voice Input Support  
-✅ AI-Based Suggestions  
-✅ Medical Recommendation Output  
+✅ Medical Suggestions  
 ✅ User History Tracking  
 ✅ Responsive UI Design  
 ✅ SQLite Database Integration  
+✅ Flask Backend Architecture  
 
 ---
 
@@ -45,6 +51,10 @@ This project was built as a beginner-to-intermediate level AI healthcare web app
 - SpeechRecognition
 - gTTS
 
+## Deployment
+- GitHub
+- Render
+
 ---
 
 # Project Structure
@@ -65,7 +75,14 @@ Akshara_Project/
 │   ├── contact.html
 │   └── support.html
 │
+├── screenshots/
+│   ├── login.png
+│   ├── signup.png
+│   ├── dashboard.png
+│   └── history.png
+│
 ├── app.py
 ├── requirements.txt
 ├── README.md
-└── .gitignore
+├── .gitignore
+└── .flake8
