@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="none,noarchive"/>
+    <title>Sign Up - Akshara AI Symptom Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="auth-body">
+    <div class="auth-overlay">
+        <header class="auth-header">
+            <div class="container">
+                <h1 class="logo">Akshara</h1>
+                <nav class="nav">
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/support">Support</a>
+                </nav>
+            </div>
+        </header>
+        <main class="auth-main">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2>Create an Account</h2>
+                    <p class="auth-subtitle">Join Akshara AI Symptom Checker</p>
+                    {% if error %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endif %}
+                    <form id="signup-form" method="POST" class="auth-form">
+                        <div class="form-group">
+                            <label for="username">Username <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                                <input type="number" id="age" name="age" placeholder="Enter your age" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg) <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-weight input-icon"></i>
+                                <input type="number" id="weight" name="weight" placeholder="Enter your weight" step="0.1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (cm) <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-ruler-vertical input-icon"></i>
+                                <input type="number" id="height" name="height" placeholder="Enter your height" step="0.1" required>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                    <p class="signup-link">Already have an account? <a href="/login">Login now</a>.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="auth-footer">
+        <div class="container">
+            <p>© 2025 Akshara - AI Symptom Checker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

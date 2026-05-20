@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="none,noarchive"/>
+    <title>Login - Akshara AI Symptom Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="auth-body">
+    <div class="auth-overlay">
+        <header class="auth-header">
+            <div class="container">
+                <h1 class="logo">Akshara</h1>
+                <nav class="nav">
+                    <a href="/">Home</a>
+                    <a href="/signup">Sign Up</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/support">Support</a>
+                </nav>
+            </div>
+        </header>
+        <main class="auth-main">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2>Welcome Back!</h2>
+                    <p class="auth-subtitle">Login to access Akshara AI Symptom Checker</p>
+                    {% if error %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endif %}
+                    <form id="login-form" onsubmit="handleLogin(event)" class="auth-form">
+                        <div class="form-group">
+                            <label for="username">Username <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" id="username" name="username" placeholder="Enter your username" required aria-required="true">
+                            </div>
+                            <span class="input-error" id="username-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required aria-required="true">
+                                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                            </div>
+                            <span class="input-error" id="password-error"></span>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me" name="remember-me">
+                                Remember Me
+                            </label>
+                            <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" id="login-btn" class="btn btn-primary">
+                                <span class="btn-text">Login</span>
+                                <span class="btn-spinner" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="signup-link">Don't have an account? <a href="/signup">Sign up now</a>.</p>
+                </div>
+            </div>
+        </main>
+        <div id="toast" class="toast"></div>
+    </div>
+    <footer class="auth-footer">
+        <div class="container">
+            <p>© 2025 Akshara - AI Symptom Checker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/static/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="none,noarchive"/>
+    <title>History - Akshara AI Symptom Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Akshara</h1>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/history">History</a>
+                <a href="/contact">Contact</a>
+                <a href="/support">Support</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <section class="auth-section">
+                <h2>Your History</h2>
+                {% if error %}
+                    <div class="error-message">{{ error }}</div>
+                {% endif %}
+                {% if entries %}
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Symptoms</th>
+                                <th>Result</th>
+                                <th>Language</th>
+                                <th>Duration</th>
+                                <th>Output Type</th>
+                                <th>Tablets</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in entries %}
+                                <tr>
+                                    <td>{{ entry[0] }}</td>
+                                    <td>{{ entry[1] }}</td>
+                                    <td>{{ entry[2] }}</td>
+                                    <td>{{ entry[3] }}</td>
+                                    <td>{{ entry[4] }}</td>
+                                    <td>{{ entry[5] }}</td>
+                                    <td>{{ entry[6] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No history available.</p>
+                {% endif %}
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Akshara - AI Symptom Checker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

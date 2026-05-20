@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="none,noarchive"/>
+    <title>Akshara AI Symptom Checker</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Akshara</h1>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/history">History</a>
+                <a href="/contact">Contact</a>
+                <a href="/support">Support</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <section class="auth-section">
+                <h2>Check Your Symptoms</h2>
+                {% if error %}
+                    <div class="error-message">{{ error }}</div>
+                {% endif %}
+                <form id="symptom-form" class="form">
+                    <div class="form-group">
+                        <label for="symptoms">Symptoms <span class="required">*</span></label>
+                        <input type="text" id="symptoms" name="symptoms" placeholder="e.g., fever, cough" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration <span class="required">*</span></label>
+                        <input type="text" id="duration" name="duration" placeholder="e.g., 2 days" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Language <span class="required">*</span></label>
+                        <select id="language" name="language" required>
+                            <option value="en">English</option>
+                            <option value="te">Telugu</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ta">Tamil</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="output-type">Output Type <span class="required">*</span></label>
+                        <select id="output-type" name="output-type" required>
+                            <option value="text">Text</option>
+                            <option value="audio">Audio</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="voice-btn" class="btn btn-voice">
+                            <i class="fas fa-microphone mic-icon"></i> Voice Input
+                        </button>
+                        <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                <div id="voice-input-box" class="voice-input-box" style="display: none;">
+                    <p>Listening for symptoms...</p>
+                    <p id="voice-status" class="voice-status">Please speak clearly.</p>
+                </div>
+                <div id="result" class="result-box" style="display: none;"></div>
+                <div id="questions" class="questions-box" style="display: none;"></div>
+                <div id="medicine" class="medicine-box" style="display: none;"></div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Akshara - AI Symptom Checker. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="/static/script.js"></script>
+</body>
+</html>
