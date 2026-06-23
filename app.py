@@ -22,6 +22,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import logging
 from jinja2.exceptions import TemplateNotFound
+from backend.config.database import users_collection
+from datetime import datetime, UTC
+
 
 # Check and download NLTK resources
 
@@ -457,46 +460,37 @@ def login():
 def signup():
     if request.method == "POST":
         username = request.form.get("username")
+        email = request.form.get("email")
         password = request.form.get("password")
-        age = request.form.get("age")
-        weight = request.form.get("weight")
-        height = request.form.get("height")
+        confirm_password = request.form.get("confirm_password")
 
-        if not all([username, password, age, weight, height]):
+        if not all([username, email, password, confirm_password]):
             logging.error("Signup attempt with missing fields")
             return safe_render_template("signup.html", error="All fields are required")
 
-        try:
-            age = int(age)
-            weight = float(weight)
-            height = float(height)
-            if age <= 0 or weight <= 0 or height <= 0:
-                raise ValueError("Age, weight, and height must be positive numbers")
-        except ValueError as e:
-            logging.error(f"Signup validation error: {str(e)}")
-            return safe_render_template("signup.html", error=str(e))
+        if password != confirm_password:
+            logging.warning("Signup failed: Passwords do not match")
+            return safe_render_template("signup.html", error="Passwords do not match")
 
-        password = hashlib.sha256(password.encode()).hexdigest()
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
         try:
-            conn = sqlite3.connect("database.db")
-            c = conn.cursor()
-            c.execute(
-                "INSERT INTO users (username, password, age, weight, height) VALUES (?, ?, ?, ?, ?)",
-                (username, password, age, weight, height),
-            )
-            conn.commit()
-            logging.info(f"User {username} signed up successfully")
+            existing_user = users_collection.find_one({"$or": [{"username": username}, {"email": email}]})
+            if existing_user:
+                logging.warning("Signup failed: Username or email already exists")
+                return safe_render_template("signup.html", error="Username or email already exists")
+            user_data = {"username": username,
+                         "email": email,
+                         "password_hash": password_hash,
+                         "profile_completed": False,
+                         "is_active": True,
+                         "created_at": datetime.now(UTC),
+                         "last_login": None}
+            users_collection.insert_one(user_data)
+            logging.info(f"User created successfully: {username}")
             return redirect(url_for("login"))
-        except sqlite3.IntegrityError:
-            logging.warning(f"Signup failed: Username {username} already exists")
-            return safe_render_template("signup.html", error="Username already exists")
         except Exception as e:
-            logging.error(f"Signup error: {str(e)}")
-            return safe_render_template(
-                "signup.html", error="An error occurred, please try again"
-            )
-        finally:
-            conn.close()
+            logging.error(f"Error occurred while creating user: {e}")
+            return safe_render_template("signup.html", error="An error occurred, please try again")
     return safe_render_template("signup.html")
 
 

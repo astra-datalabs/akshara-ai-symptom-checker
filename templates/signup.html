@@ -26,7 +26,7 @@
             <div class="auth-container">
                 <div class="auth-card">
                     <h2>Create an Account</h2>
-                    <p class="auth-subtitle">Join Akshara AI Symptom Checker</p>
+                    <p class="auth-subtitle">Create your Akshara Health Assistant account</p>
                     {% if error %}
                         <div class="error-message">{{ error }}</div>
                     {% endif %}
@@ -39,6 +39,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="password">Password <span class="required">*</span></label>
                             <div class="input-wrapper">
                                 <i class="fas fa-lock input-icon"></i>
@@ -46,24 +53,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="age">Age <span class="required">*</span></label>
+                            <label for="confirm_password">Confirm Password <span class="required">*</span></label>
                             <div class="input-wrapper">
-                                <i class="fas fa-calendar-alt input-icon"></i>
-                                <input type="number" id="age" name="age" placeholder="Enter your age" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="weight">Weight (kg) <span class="required">*</span></label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-weight input-icon"></i>
-                                <input type="number" id="weight" name="weight" placeholder="Enter your weight" step="0.1" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="height">Height (cm) <span class="required">*</span></label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-ruler-vertical input-icon"></i>
-                                <input type="number" id="height" name="height" placeholder="Enter your height" step="0.1" required>
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
                             </div>
                         </div>
                         <div class="form-actions">
