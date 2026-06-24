@@ -369,47 +369,18 @@ def index():
     if "user_id" not in session:
         return redirect(url_for("login"))
     try:
-        conn = sqlite3.connect("database.db")
-        c = conn.cursor()
-        c.execute("SELECT id FROM users WHERE id = ?", (session["user_id"],))
-        user = c.fetchone()
-        if not user:
-            session.pop("user_id", None)
-            logging.warning(
-                f"Invalid user_id {session['user_id']} in session, redirecting to login"
-            )
-            return redirect(url_for("login"))
         logging.info(f"User {session['user_id']} accessed index page")
         return safe_render_template("index.html")
     except Exception as e:
         logging.error(f"Error in index route: {str(e)}")
-        return safe_render_template(
-            "index.html", error="An error occurred, please try again"
-        )
-    finally:
-        conn.close()
+        return safe_render_template("index.html", error="An error occurred, please try again")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if "user_id" in session:
-        try:
-            conn = sqlite3.connect("database.db")
-            c = conn.cursor()
-            c.execute("SELECT id FROM users WHERE id = ?", (session["user_id"],))
-            user = c.fetchone()
-            if user:
-                logging.info(
-                    f"User {session['user_id']} already logged in, redirecting to index"
-                )
-                return redirect(url_for("index"))
-            else:
-                session.pop("user_id", None)
-        except Exception as e:
-            logging.error(f"Error checking session in login route: {str(e)}")
-            session.pop("user_id", None)
-        finally:
-            conn.close()
+        logging.info(f"User {session['user_id']} already logged in")
+        return redirect(url_for("index"))
 
     if request.method == "POST":
         username = request.form.get("username")
@@ -422,17 +393,11 @@ def login():
                 "login.html", error="Username and password are required"
             )
 
-        password = hashlib.sha256(password.encode()).hexdigest()
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
         try:
-            conn = sqlite3.connect("database.db")
-            c = conn.cursor()
-            c.execute(
-                "SELECT id FROM users WHERE username = ? AND password = ?",
-                (username, password),
-            )
-            user = c.fetchone()
+            user = users_collection.find_one({"username": username, "password_hash": password_hash})
             if user:
-                session["user_id"] = user[0]
+                session["user_id"] = str(user["_id"])
                 if remember_me:
                     app.config["PERMANENT_SESSION_LIFETIME"] = 2592000  # 30 days
                     session.permanent = True
@@ -451,8 +416,6 @@ def login():
             return safe_render_template(
                 "login.html", error="An error occurred, please try again"
             )
-        finally:
-            conn.close()
     return safe_render_template("login.html")
 
 
