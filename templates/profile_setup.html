@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshara Health Profile</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body class="auth-body">
+
+<div class="auth-overlay">
+
+<div class="wizard-container">
+
+    <!-- Welcome Screen -->
+
+    <div id="welcome-screen" class="wizard-step">
+
+        <div class="auth-card">
+
+            <h1>🩺 Akshara</h1>
+
+            <h2>Welcome!</h2>
+
+            <p>
+                I'm your AI Health Assistant.
+            </p>
+
+            <p>
+                Let's personalize your experience.
+            </p>
+
+            <p>
+                ⏱ Takes less than 2 minutes.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="showStep(1)">
+                Start Setup
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Step 1 -->
+
+    <div id="step1" class="wizard-step hidden">
+
+        <div class="auth-card">
+
+            <h2>👤 Personal Information</h2>
+
+            <p>Step 1 of 4</p>
+
+            <p>
+                (Fields will come in Sprint 2)
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="showStep(0)">
+                ← Back
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Future Steps -->
+
+    <div id="step2" class="wizard-step hidden"></div>
+
+    <div id="step3" class="wizard-step hidden"></div>
+
+    <div id="step4" class="wizard-step hidden"></div>
+
+</div>
+
+</div>
+
+<script src="/static/profile_setup.js"></script>
+
+</body>
+</html>

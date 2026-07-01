@@ -503,3 +503,21 @@ body {
         font-size: 0.9em;
     }
 }
+
+/* ========================= */
+/* Wizard */
+/* ========================= */
+
+.wizard-container{
+
+    width:100%;
+    max-width:700px;
+    margin:auto;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
