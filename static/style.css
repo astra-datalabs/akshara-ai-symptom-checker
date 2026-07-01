@@ -521,3 +521,25 @@ body {
     display:none;
 
 }
+.form-row{
+
+    display:flex;
+    gap:20px;
+    margin-bottom:20px;
+
+}
+
+.form-row .form-group{
+
+    flex:1;
+
+}
+@media (max-width:768px){
+
+    .form-row{
+
+        flex-direction:column;
+
+    }
+
+}

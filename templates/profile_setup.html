@@ -54,28 +54,78 @@
 
     <!-- Step 1 -->
 
-    <div id="step1" class="wizard-step hidden">
+  <div id="step1" class="wizard-step hidden">
 
-        <div class="auth-card">
+    <div class="auth-card">
+
+        <!-- Wizard Header -->
+        <div class="wizard-header">
 
             <h2>👤 Personal Information</h2>
 
-            <p>Step 1 of 4</p>
+            <p class="step-text">Step 1 of 4</p>
 
-            <p>
-                (Fields will come in Sprint 2)
-            </p>
+            <div class="progress-container">
 
-            <button
-                class="btn btn-primary"
-                onclick="showStep(0)">
-                ← Back
-            </button>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:25%;"></div>
+                </div>
+
+                <p class="progress-text">25% Complete</p>
+
+            </div>
+
+        </div>
+
+        <!-- Personal Information Form -->
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label for="first_name">
+                    <i class="fas fa-user"></i>
+                    First Name
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="first_name"
+                        name="first_name"
+                        placeholder="Enter your first name"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="last_name">
+                    <i class="fas fa-user"></i>
+                    Last Name
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="last_name"
+                        name="last_name"
+                        placeholder="Enter your last name"
+                        required>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
+</div>
     <!-- Future Steps -->
 
     <div id="step2" class="wizard-step hidden"></div>
